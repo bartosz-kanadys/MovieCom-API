@@ -18,5 +18,5 @@ data class Comment(
     @CreatedDate // Automatyczna data utworzenia (wymaga @EnableMongoAuditing)
     val createdAt: Date? = null,
     var content: String,
-    val rating: Double
+    var rating: Double
 )
