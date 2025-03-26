@@ -9,13 +9,15 @@ import java.util.Optional
 class CommentService(
     private val commentRepository: CommentRepository
 ) {
-    fun getAllComments(): List<Comment>? = commentRepository.findAll()
+    fun getAllComments(): List<Comment> = commentRepository.findAll()
 
-    fun getCommentByUser(userName: String): List<Comment>? = commentRepository.findByUser(userName)
+    fun getCommentByUser(userName: String): List<Comment> = commentRepository.findByUser(userName)
+
+    fun getCommentByMovieId(id: String): List<Comment> = commentRepository.findByMovieId(id)
 
     fun getCommentById(id: String): Optional<Comment> = commentRepository.findById(id)
 
-    fun createComment(comment: Comment): Comment = commentRepository.save(comment)
+    fun createComment(comment: Comment): Comment? = commentRepository.save(comment)
 
     fun updateComment(id: String, commentDetails: Comment): Optional<Comment> {
         val commentOptional = commentRepository.findById(id)

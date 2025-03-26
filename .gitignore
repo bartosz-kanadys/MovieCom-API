@@ -1,4 +1,4 @@
-.env
+src/main/kotlin/com/movie/restApi/.env
 
 /target/
 !.mvn/wrapper/maven-wrapper.jar

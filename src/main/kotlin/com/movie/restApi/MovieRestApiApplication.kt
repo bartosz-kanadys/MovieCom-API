@@ -1,4 +1,4 @@
-package com.movie.Movie.RestApi
+package com.movie.restApi
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
