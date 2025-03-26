@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class User(
     @Id
     val id: String,
-    val login: String,
-    val email: String,
-    val password: String,
-    val role: List<String> = listOf("ROLE_USER")
+    var login: String,
+    var email: String,
+    var password: String,
+    var role: List<String> = listOf("ROLE_USER")
 )
