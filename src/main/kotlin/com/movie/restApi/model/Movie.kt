@@ -7,7 +7,7 @@ import java.util.Date
 @Document(collation = "movies")
 data class Movie(
     @Id
-    val id: String,
+    var id: String,
     val plot: String,
     val genres: List<String>,
     val runtime: Int,
