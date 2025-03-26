@@ -4,7 +4,7 @@ import java.util.Date
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document(collation = "comments")
+@Document(collection = "comments")
 data class Comment(
     @Id
     val id: String,
