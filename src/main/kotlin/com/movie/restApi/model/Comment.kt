@@ -12,11 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Comment(
     @Id // MongoDB automatycznie generuje ID
     val id: String? = null,
-    val movieId: String,
-    val user: String,
+    var movieId: String,
+    var user: String,
 
     @CreatedDate // Automatyczna data utworzenia (wymaga @EnableMongoAuditing)
     val createdAt: Date? = null,
-    val content: String,
+    var content: String,
     val rating: Double
 )
