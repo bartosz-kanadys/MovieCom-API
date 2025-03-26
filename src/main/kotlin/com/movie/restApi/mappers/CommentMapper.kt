@@ -2,6 +2,7 @@ package com.movie.restApi.mappers
 
 import com.movie.restApi.dto.CommentDTO
 import com.movie.restApi.model.Comment
+import jakarta.validation.constraints.NotNull
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.factory.Mappers
@@ -20,7 +21,7 @@ interface CommentMapper {
 
     //ignorowane pola Mongo samo je wstawia
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     fun toEntity(dto: CommentDTO): Comment
 
     fun toDTO(comment: Comment): CommentDTO
