@@ -17,7 +17,7 @@ class MovieService(
 
     fun getMovieById(id: String): Optional<Movie> = movieRepository.findById(id)
 
-    fun getMoviesByTitle(title: String): List<Movie>? = movieRepository.findByTitleContainingIgnoreCase(title)
+    fun getMoviesByTitle(title: String): List<Movie> = movieRepository.findByTitleContainingIgnoreCase(title)
 
     fun getMoviesByTitleWithLimit(title: String, pageNumber: Int, pageSize: Int): List<Movie> {
         val pageable: Pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "year"))
@@ -36,7 +36,6 @@ class MovieService(
         } else {
             Optional.empty()
         }
-
     }
 
     fun deleteMovie(id: String): Boolean {

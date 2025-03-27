@@ -1,50 +1,61 @@
 package com.movie.restApi.model
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
+import java.time.LocalDate
 import java.util.Date
 
 @Document(collection = "movies")
 data class Movie(
     @Id
-    var id: String,
-    val plot: String,
-    val genres: List<String>,
-    val runtime: Int,
-    val cast: List<String> = emptyList(),
-    val numMflixComments: Int,
-    val poster: String,
-    val title: String,
-    val fullPlot: String,
-    val languages: List<String> = emptyList(),
-    val released: Date,
-    val directors: List<String> = emptyList(),
-    val writers: List<String> = emptyList(),
-    val awards: Awards,
+    var id: String? = null,
+    var plot: String?,
+    var genres: List<String>?,
+    var runtime: Int? = null,
+    var cast: List<String> = mutableListOf(),
+    @Field("num_mflix_comments")
+    var numMflixComments: Int? = null,
+    var poster: String?,
+    var title: String,
+    var fullPlot: String = "",
+    var languages: List<String> = mutableListOf(),
+    var released: LocalDate?,
+    var directors: List<String> = mutableListOf(),
+    var writers: List<String> = mutableListOf(),
+    var awards: Awards?,
+    @LastModifiedDate
+    var lastUpdated: LocalDate? = null,
+    var year: Int? = null,
+    var imdb: Imdb? = null,
+    var countries: List<String> = mutableListOf(),
+    var type: String?,
+    var tomatoes: Tomatoes? = null
 ) {
     data class Awards(
-        val wins: Int,
-        val nominations: Int,
-        val text: String
+        var wins: Int? = 0,
+        var nominations: Int? = 0,
+        var text: String? = ""
     )
 
     data class Imdb(
-        val rating: Double,
-        val votes: Int,
-        val id: Int
+        var rating: Double? = 0.0,
+        var votes: Int? = 0,
+        var id: Int? = 0
     )
 
     data class Tomatoes(
-        val viewer: Viewer,
-        val website: String,
-        val production: String,
-        val lastUpdated: Date,
-        val dvd: Date
+        var viewer: Viewer? = Viewer(),
+        var website: String? = "",
+        var production: String? = "",
+        var lastUpdated: Date? = Date(),
+        var dvd: Date? = Date()
     ) {
         data class Viewer(
-            val rating: Double,
-            val numReviews: Double,
-            val meter: Int
+            var rating: Double? = 0.0,
+            var numReviews: Double? = 0.0,
+            var meter: Int? = 0
         )
     }
 }
