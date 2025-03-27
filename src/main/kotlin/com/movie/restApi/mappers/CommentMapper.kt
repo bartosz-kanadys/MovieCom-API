@@ -2,7 +2,7 @@ package com.movie.restApi.mappers
 
 import com.movie.restApi.dto.CommentDTO
 import com.movie.restApi.model.Comment
-import jakarta.validation.constraints.NotNull
+
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.factory.Mappers

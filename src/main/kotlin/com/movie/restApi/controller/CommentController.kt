@@ -60,7 +60,7 @@ class CommentController(
     }
 
     @PutMapping("/{id}")
-    fun updateComment(@PathVariable id: String, @RequestBody commentDetails: CommentUpdateDTO): ResponseEntity<Any> {
+    fun updateComment(@PathVariable id: String, @Valid @RequestBody commentDetails: CommentUpdateDTO): ResponseEntity<Any> {
         //Client can edit only content and rating, other changes will not be saved in the database
         val existingComment = commentService.getCommentById(id)
 
