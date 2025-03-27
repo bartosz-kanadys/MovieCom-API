@@ -9,13 +9,13 @@ import java.util.Optional
 class UserService(
     private val userRepository: UserRepository
 ) {
-    fun getAllUsers(): List<User> = userRepository.findAll()
+    fun getAllUsers(): List<User>? = userRepository.findAll()
 
     fun getUserById(id: String): Optional<User> = userRepository.findById(id)
 
     fun getUserByLogin(login: String): User? = userRepository.findByLogin(login)
 
-    fun createUser(user: User): User = userRepository.save(user)
+    fun createUser(user: User): User? = userRepository.save(user)
 
     fun updateUser(id: String, userDetails: User): User? {
         val userOptional = userRepository.findById(id)
