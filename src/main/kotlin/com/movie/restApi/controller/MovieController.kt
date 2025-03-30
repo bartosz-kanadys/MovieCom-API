@@ -5,6 +5,7 @@ import com.movie.restApi.mappers.MovieMapper
 import com.movie.restApi.service.MovieService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -61,12 +62,14 @@ class MovieController(
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     fun createMovie(@RequestBody movie: MovieDTO): ResponseEntity<MovieDTO> {
         val newMovie = movieService.createMovie(MovieMapper.INSTANCE.toEntity(movie))
         return ResponseEntity(MovieMapper.INSTANCE.toDTO(newMovie), HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     fun updateMovie(@PathVariable id: String, @RequestBody movieDTO: MovieDTO): ResponseEntity<MovieDTO> {
         val existingMovieOptional = movieService.getMovieById(id)
         if (!existingMovieOptional.isPresent) {
@@ -86,6 +89,7 @@ class MovieController(
         return ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR)
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     fun deleteMovie(@PathVariable id: String): ResponseEntity<String> {
         return if (movieService.deleteMovie(id)) {

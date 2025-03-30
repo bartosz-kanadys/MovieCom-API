@@ -8,6 +8,7 @@ import com.movie.restApi.service.CommentService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
 
@@ -35,6 +36,7 @@ class CommentController(
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN', 'USER')")
     fun createComment(@RequestBody @Valid commentDTO: CommentDTO, bindingResult: BindingResult): ResponseEntity<Any> {
         //obsluga bledow z validatora dto
         if (bindingResult.hasErrors()) {
@@ -53,6 +55,7 @@ class CommentController(
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     fun updateComment(
         @PathVariable id: String,
         @Valid @RequestBody commentDetails: CommentUpdateDTO
@@ -74,6 +77,7 @@ class CommentController(
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     fun deleteComment(@PathVariable id: String): ResponseEntity<String> {
         return if (commentService.deleteComment(id)) {
             ResponseEntity("Comment deleted successfully", HttpStatus.OK)

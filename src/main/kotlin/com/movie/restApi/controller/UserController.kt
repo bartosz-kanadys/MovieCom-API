@@ -7,6 +7,7 @@ import com.movie.restApi.service.UserService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
 
@@ -46,6 +47,7 @@ class UserController(
     }
 
     @PostMapping()
+    @PreAuthorize("hasRole('ADMIN')")
     fun createUser(@Valid @RequestBody userDTO: UserDTO, bindingResult: BindingResult): ResponseEntity<Any> {
         if (bindingResult.hasErrors()) {
             val errorMessage = bindingResult.allErrors.joinToString(", ") { it.defaultMessage ?: "Invalid data" }
@@ -66,6 +68,7 @@ class UserController(
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     fun updateUser(@PathVariable id: String, @Valid @RequestBody userDetails: UserDTO): ResponseEntity<Any> {
         val existingUser = userService.getUserById(id)
 
@@ -84,6 +87,7 @@ class UserController(
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     fun deleteUser(@PathVariable id: String): ResponseEntity<String> {
         return if (userService.deleteUser(id)) {
             ResponseEntity("User deleted successfully", HttpStatus.OK)
