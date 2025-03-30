@@ -1,9 +1,9 @@
 package com.movie.restApi.model
 
 import org.springframework.data.annotation.CreatedDate
-import java.util.Date
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import java.util.*
 
 
 //Model: Serwis, repozytorium

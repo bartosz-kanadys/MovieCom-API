@@ -3,7 +3,7 @@ package com.movie.restApi.service
 import com.movie.restApi.model.User
 import com.movie.restApi.repository.UserRepository
 import org.springframework.stereotype.Service
-import java.util.Optional
+import java.util.*
 
 @Service
 class UserService(

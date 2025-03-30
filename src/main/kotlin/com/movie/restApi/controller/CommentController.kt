@@ -9,14 +9,7 @@ import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/comments")
@@ -43,7 +36,7 @@ class CommentController(
 
     @PostMapping
     fun createComment(@RequestBody @Valid commentDTO: CommentDTO, bindingResult: BindingResult): ResponseEntity<Any> {
-       //obsluga bledow z validatora dto
+        //obsluga bledow z validatora dto
         if (bindingResult.hasErrors()) {
             val errorMessage = bindingResult.allErrors.joinToString(", ") { it.defaultMessage ?: "Invalid data" }
             return ResponseEntity(errorMessage, HttpStatus.BAD_REQUEST)
@@ -60,7 +53,10 @@ class CommentController(
     }
 
     @PutMapping("/{id}")
-    fun updateComment(@PathVariable id: String, @Valid @RequestBody commentDetails: CommentUpdateDTO): ResponseEntity<Any> {
+    fun updateComment(
+        @PathVariable id: String,
+        @Valid @RequestBody commentDetails: CommentUpdateDTO
+    ): ResponseEntity<Any> {
         //Client can edit only content and rating, other changes will not be saved in the database
         val existingComment = commentService.getCommentById(id)
 
@@ -69,7 +65,7 @@ class CommentController(
             oldComment.content = commentDetails.content
             oldComment.rating = commentDetails.rating
 
-            val updatedComment = commentService.updateComment(id,oldComment)
+            val updatedComment = commentService.updateComment(id, oldComment)
             val updatedCommentDTO = CommentMapper.INSTANCE.toDTO(updatedComment.get())
             return ResponseEntity(updatedCommentDTO, HttpStatus.OK)
         } else {

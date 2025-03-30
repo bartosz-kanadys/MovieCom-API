@@ -1,26 +1,14 @@
 package com.movie.restApi.controller
 
 import com.mongodb.DuplicateKeyException
-import com.movie.restApi.dto.CommentDTO
 import com.movie.restApi.dto.UserDTO
-import com.movie.restApi.mappers.CommentMapper
 import com.movie.restApi.mappers.UserMapper
-import com.movie.restApi.model.Comment
-import com.movie.restApi.model.User
 import com.movie.restApi.service.UserService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-import kotlin.math.log
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/users")
@@ -54,7 +42,7 @@ class UserController(
         return userService.getUserByLogin(login)?.let { user ->
             val userDTO = UserMapper.INSTANCE.toDTO(user)
             ResponseEntity(userDTO, HttpStatus.OK)
-        }?: ResponseEntity("User with login: $login not found", HttpStatus.OK)
+        } ?: ResponseEntity("User with login: $login not found", HttpStatus.OK)
     }
 
     @PostMapping()
