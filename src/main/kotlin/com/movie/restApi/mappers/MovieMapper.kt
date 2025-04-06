@@ -14,12 +14,12 @@ interface MovieMapper {
 
     fun toDTO(movie: Movie): MovieDTO
 
-    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "id", ignore = true)
     fun toEntity(movieDTO: MovieDTO): Movie
 
     //sluzy do mapowania obiektu przy jego aktualizacji tak aby zaktualizowane zostały tylko te pola
     //ktore zostaly przekazane w body zapytania
-    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "id", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     fun updateMovieFromDTO(dto: MovieDTO, @MappingTarget movie: Movie)
 }

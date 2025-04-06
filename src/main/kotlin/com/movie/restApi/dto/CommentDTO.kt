@@ -8,8 +8,10 @@ import jakarta.validation.constraints.NotNull
 //DTO: Kontroler, API
 
 data class CommentDTO(
+    val _id: String?,
     @field:NotEmpty(message = "Movie ID cannot be empty")
     val movieId: String,
+
 
     @field:NotEmpty(message = "User cannot be empty")
     val user: String,

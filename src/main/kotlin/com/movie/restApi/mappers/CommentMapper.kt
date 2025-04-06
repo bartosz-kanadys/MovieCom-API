@@ -20,7 +20,7 @@ interface CommentMapper {
     }
 
     //ignorowane pola Mongo samo je wstawia
-    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     fun toEntity(dto: CommentDTO): Comment
 

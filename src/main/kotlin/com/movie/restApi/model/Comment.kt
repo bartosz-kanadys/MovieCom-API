@@ -11,7 +11,7 @@ import java.util.*
 @Document(collection = "comments")
 data class Comment(
     @Id // MongoDB automatycznie generuje ID
-    val id: String? = null,
+    val _id: String? = null,
     var movieId: String,
     var user: String,
 

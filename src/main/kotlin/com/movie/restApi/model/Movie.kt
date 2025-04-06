@@ -10,7 +10,7 @@ import java.util.*
 @Document(collection = "movies")
 data class Movie(
     @Id
-    var id: String? = null,
+    var _id: String? = null,
     var plot: String?,
     var genres: List<String>?,
     var runtime: Int? = null,

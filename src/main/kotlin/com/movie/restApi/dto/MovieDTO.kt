@@ -4,6 +4,7 @@ import java.time.LocalDate
 import java.util.*
 
 data class MovieDTO(
+    val _id: String?,
     val plot: String?,
     val genres: List<String>?,
     val runtime: Int?,
