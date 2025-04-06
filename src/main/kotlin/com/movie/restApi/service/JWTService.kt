@@ -22,16 +22,25 @@ class JWTService @Autowired constructor(
     fun generateToken(user: UserLoginDTO): String {
         val userFromDatabase = userService.getUserByLogin(user.login)
         println(userFromDatabase)
-        println(user.role)
         println(user.login)
 
+        val header: Map<String, Any> = mapOf(
+            "typ" to "JWT",
+            "alg" to "HS256"
+        )
+
         val claims: MutableMap<String, Any> = HashMap()
+
+        claims["login"] = user.login
+        if (userFromDatabase != null) {
+            claims["email"] = userFromDatabase.email
+        }
         if (userFromDatabase != null) {
             claims["role"] = userFromDatabase.role
         }
-        claims["login"] = user.login
 
         return Jwts.builder()
+            .setHeaderParams(header)
             .setClaims(claims)
             .setIssuedAt(Date(System.currentTimeMillis()))
             .setExpiration(Date(System.currentTimeMillis() + 1000 * 60 * 60)) // Godzina ważności tokenu

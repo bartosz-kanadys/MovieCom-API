@@ -22,7 +22,7 @@ class MyUserDetailsService(
         println("Znaleziono użytkownika: ${user.login}")
 
         val authorities: List<GrantedAuthority> = user.role.map { role ->
-            SimpleGrantedAuthority(role)
+            SimpleGrantedAuthority("ROLE"+role)
         }
         return org.springframework.security.core.userdetails.User(
             user.login,
