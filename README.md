@@ -4,6 +4,8 @@
 
 MovieCom is an application designed to manage data related to movies, users, and comments. The application utilizes a RESTful architecture, allowing for easy and efficient interactions with data through standard HTTP methods.
 
+Frontend client available in repository: [MovieCom-Client](https://github.com/bartosz-kanadys/MovieCom-Client)
+
 ## Features
 
 - **Movie Management**: Ability to add, edit, delete, and view movies.
