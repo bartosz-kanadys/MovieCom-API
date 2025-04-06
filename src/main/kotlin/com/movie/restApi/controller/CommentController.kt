@@ -29,14 +29,14 @@ class CommentController(
         return commentsRespond(comments)
     }
 
-    @GetMapping("movieId/{movieId}")
-    fun getCommentsByMovieId(@PathVariable id: String): ResponseEntity<List<CommentDTO>> {
-        val comments = commentService.getCommentByMovieId(id)
+    @GetMapping("movieID/{movieID}")
+    fun getCommentsByMovieId(@PathVariable movieID: String): ResponseEntity<List<CommentDTO>> {
+        val comments = commentService.getCommentByMovieId(movieID)
         return commentsRespond(comments)
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     fun createComment(@RequestBody @Valid commentDTO: CommentDTO, bindingResult: BindingResult): ResponseEntity<Any> {
         //obsluga bledow z validatora dto
         if (bindingResult.hasErrors()) {

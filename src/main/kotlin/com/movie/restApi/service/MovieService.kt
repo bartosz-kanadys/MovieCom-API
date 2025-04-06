@@ -20,7 +20,7 @@ class MovieService(
     fun getMoviesByTitle(title: String): List<Movie> = movieRepository.findByTitleContainingIgnoreCase(title)
 
     fun getMoviesByTitleWithLimit(title: String, pageNumber: Int, pageSize: Int): List<Movie> {
-        val pageable: Pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "year"))
+        val pageable: Pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "year"))
         // Regex with pagination
         val resultPage: Page<Movie> = movieRepository.findByTitleRegex(title, pageable)
 
@@ -31,7 +31,7 @@ class MovieService(
 
     fun updateMovie(id: String, movie: Movie): Optional<Movie> {
         return if (movieRepository.existsById(id)) {
-            movie.id = id
+            movie._id = id
             Optional.of(movieRepository.save(movie))
         } else {
             Optional.empty()
