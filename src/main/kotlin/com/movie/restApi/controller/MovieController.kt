@@ -20,7 +20,7 @@ class MovieController(
             val moviesDTO = movies.map { MovieMapper.INSTANCE.toDTO(it) }
             return ResponseEntity(moviesDTO, HttpStatus.OK)
         } else {
-            return ResponseEntity(emptyList(), HttpStatus.NOT_FOUND)
+            return ResponseEntity(emptyList(), HttpStatus.OK)
         }
     }
 
@@ -31,7 +31,7 @@ class MovieController(
             val movieDTO = MovieMapper.INSTANCE.toDTO(movie.get())
             return ResponseEntity(movieDTO, HttpStatus.OK)
         } else {
-            return ResponseEntity(null, HttpStatus.NOT_FOUND)
+            return ResponseEntity(null, HttpStatus.OK)
         }
     }
 
@@ -42,7 +42,7 @@ class MovieController(
             val moviesDTO = movie.map { MovieMapper.INSTANCE.toDTO(it) }
             return ResponseEntity(moviesDTO, HttpStatus.OK)
         } else {
-            return ResponseEntity(emptyList(), HttpStatus.NOT_FOUND)
+            return ResponseEntity(emptyList(), HttpStatus.OK)
         }
     }
 
@@ -57,7 +57,7 @@ class MovieController(
             val moviesDTO = movies.map { MovieMapper.INSTANCE.toDTO(it) }
             return ResponseEntity(moviesDTO, HttpStatus.OK)
         } else {
-            return ResponseEntity(emptyList(), HttpStatus.NOT_FOUND)
+            return ResponseEntity(emptyList(), HttpStatus.OK)
         }
     }
 
@@ -95,7 +95,7 @@ class MovieController(
         return if (movieService.deleteMovie(id)) {
             ResponseEntity("Movie deleted successfully", HttpStatus.OK)
         } else {
-            ResponseEntity("Movie with id: $id not found", HttpStatus.NOT_FOUND)
+            ResponseEntity("Movie with id: $id not found", HttpStatus.OK)
         }
     }
 }
