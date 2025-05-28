@@ -19,7 +19,7 @@ data class Movie(
     var numMflixComments: Int? = null,
     var poster: String?,
     var title: String,
-    var fullPlot: String = "",
+    var fullplot: String?,
     var languages: List<String> = mutableListOf(),
     var released: LocalDate?,
     var directors: List<String> = mutableListOf(),

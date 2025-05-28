@@ -12,7 +12,7 @@ data class MovieDTO(
     val numMflixComments: Int?,
     val poster: String?,
     val title: String?,
-    val fullPlot: String = "",
+    val fullplot: String?,
     val languages: List<String> = mutableListOf(),
     val released: LocalDate?,
     val directors: List<String> = mutableListOf(),
